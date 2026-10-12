@@ -45,7 +45,12 @@ const onAuthClick = () => {
 <template>
   <div class="header-shell">
     <header class="header">
-      <button class="brand" type="button" @click="onNavigate('about')">EduSpace</button>
+      <button class="brand" type="button" @click="onNavigate('about')">
+        <picture>
+          <source media="(max-width: 767px)" srcset="/mob.png" />
+          <img src="/pc.png" alt="Logo" class="brand-logo" />
+        </picture>
+      </button>
 
       <nav class="nav-desktop">
         <button
@@ -109,7 +114,8 @@ const onAuthClick = () => {
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
-  padding: 14px 22px;
+  padding: 0 15px;
+  min-height: 72px;
   border-bottom: 1px solid #e2e8f0;
   background-color: #ffffff;
   position: relative;
@@ -119,11 +125,18 @@ const onAuthClick = () => {
 .brand {
   border: none;
   background: transparent;
-  font-size: 1.22rem;
-  font-weight: 800;
-  color: #1e293b;
+  display: flex;
+  align-items: center;
+  min-width: 0;
   cursor: pointer;
-  line-height: 1;
+  padding: 0;
+}
+
+.brand-logo {
+  height: 60px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .nav-desktop {
@@ -155,6 +168,8 @@ const onAuthClick = () => {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .btn {
@@ -197,7 +212,11 @@ const onAuthClick = () => {
 
 @media (max-width: 767px) {
   .header {
-    padding: 12px;
+    min-height: 64px;
+  }
+
+  .brand-logo {
+    height: 45px;
   }
 
   .nav-desktop {
@@ -272,6 +291,12 @@ const onAuthClick = () => {
     background: #fef2f2;
     border-color: #fecaca;
     color: #b91c1c;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    gap: 8px;
   }
 }
 </style>
